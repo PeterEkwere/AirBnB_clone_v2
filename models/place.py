@@ -3,6 +3,7 @@
 from models.base_model import BaseModel
 from models.base_model import Base
 from sqlalchemy import Column, Integer, String, ForeignKey, Float, Table
+from sqlalchemy.orm import relationship
 
 
 class Place(BaseModel, Base):
@@ -26,14 +27,26 @@ class Place(BaseModel, Base):
         Base.metadata,
         Column(
             'place_id',
-            ForeignKey('place.id'),
+            String(60),
+            ForeignKey('places.id'),
             primary_key=True,
             nullable=False
         ),
         Column(
             'amenity_id',
+            String(60),
             ForeignKey('amenities.id'),
             primary_key=True,
             nullable=False
         )
     )
+    reviews = relationship(
+            "Review",
+            backref="place"
+            )
+    amenities = relationship(
+            "Amenity",
+            secondary=place_amenity,
+            back_populates="place_amenities",
+            viewonly=False
+            )
