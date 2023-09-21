@@ -4,23 +4,18 @@ from models.base_model import BaseModel
 from models.base_model import Base
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
-import os
 
-environment = os.environ.get("HBNB_TYPE_STORAGE")
 
 
 class City(BaseModel, Base):
     """ The city class, contains state ID and name """
     __tablename__ = "cities"
-    if environment == "db":
-        state_id = Column(String(60), ForeignKey('states.id'), nullable=False)
-        name = Column(String(128), nullable=False)
 
-        places = relationship(
-                "Place",
-                backref="cities",
-                cascade="delete, delete-orphan"
-                )
-    else:
-        name = ""
-        state_id = ""
+    state_id = Column(String(60), ForeignKey('states.id'), nullable=False)
+    name = Column(String(128), nullable=False)
+
+    places = relationship(
+        "Place",
+        backref="cities",
+        cascade="delete, delete-orphan"
+    )
