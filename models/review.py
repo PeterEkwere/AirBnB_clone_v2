@@ -9,6 +9,7 @@ import os
 
 environment = os.environ.get("HBNB_TYPE_STORAGE")
 
+
 class Review(BaseModel, Base):
     """ Review classto store review information """
     __tablename__ = "reviews"

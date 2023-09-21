@@ -8,6 +8,7 @@ import os
 
 environment = os.environ.get("HBNB_TYPE_STORAGE")
 
+
 class City(BaseModel, Base):
     """ The city class, contains state ID and name """
     __tablename__ = "cities"
