@@ -8,6 +8,7 @@ import os
 
 environment = os.get.environ("HBNB_TYPE_STORAGE")
 
+
 class Place(BaseModel, Base):
     """ A place to stay """
     __tablename__ = "places"
