@@ -5,7 +5,8 @@ sudo apt-get -y install nginx
 sudo mkdir -p /data/web_static/releases/test/
 sudo touch /data/web_static/releases/test/index.html
 sudo ln -sf /data/web_static/releases/test/  /data/web_static/current
-sudo chown -R ubuntu:ubuntu /data/
+sudo chown -R ubuntu /data/
+sudo chgrp -R ubuntu /data/
 sudo sh -c 'cat sed/file.html > /data/web_static/current/index.html'
 sudo sh -c 'echo "Hello World!" > /var/www/html/index.nginx-debian.html'
 sudo touch /etc/nginx/html/404.html
