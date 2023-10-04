@@ -8,7 +8,6 @@ pip install -r requirements.txt
 ```
 This will ensure all necessary packages are installed and ready for use.
 
-
 ---
 
 <center><h3>Repository Contents by Project Task</h3> </center>
