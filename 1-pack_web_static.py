@@ -19,7 +19,7 @@ def do_pack():
     m = now.minute
     s = now.second
     PATH = f"web_static_{y}{m:02}{d:02}{h:02}{m:02}{s:02}.tgz"
-    local("mkdir versions")
+    local("mkdir -p versions")
     result = local(f"tar -czvf versions/{PATH} web_static")
     if result.succeeded:
         return PATH
