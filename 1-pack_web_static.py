@@ -4,11 +4,10 @@
     Author: Peter Ekwere
 """
 from datetime import datetime
-from fabric.api import local, task
+from fabric.api import local
 import os
 
 
-@task
 def do_pack():
     """ This function handle the .tgz archiving
     """
