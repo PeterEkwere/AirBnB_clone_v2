@@ -13,14 +13,13 @@ def do_pack():
     """ This function handle the .tgz archiving
     """
     now = datetime.now()
-    year = now.year
-    month = now.month
-    day = now.day
-    hour = now.hour
-    minute = now.minute
-    second = now.second
-    tarFileName = f"web_static_{year}{month: 02}{day: 02}
-    {hour: 02}{minute: 02}{second: 02}.tgz"
+    y = now.year
+    m = now.month
+    d = now.day
+    h = now.hour
+    m = now.minute
+    s = now.second
+    tarFileName = f"web_static_{y}{m:02}{d:02}{h:02}{m:02}{s:02}.tgz"
     local('mkdir versions')
     local(f'tar -cvf versions/{tarFileName} web_static')
     PATH = os.path.abspath(f'versions/{tarFileName}')
