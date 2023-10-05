@@ -19,17 +19,10 @@ def do_pack():
     h = now.hour
     m = now.minute
     s = now.second
-    tarFileName = f"web_static_{y}{m:02}{d:02}{h:02}{m:02}{s:02}.tgz"
-    local('mkdir versions')
-    local(f'tar -cvf versions/{tarFileName} web_static')
-    PATH = os.path.abspath(f'versions/{tarFileName}')
-    if os.path.exists(PATH):
+    PATH = f"web_static_{y}{m:02}{d:02}{h:02}{m:02}{s:02}.tgz"
+    local("mkdir versions")
+    result = local(f"tar -czvf versions/{PATH} web_static")
+    if result.succeeded:
         return PATH
     else:
         return None
-
-
-if __name__ == "__main__":
-    """ Trigger if called directly
-    """
-    do_pack()
