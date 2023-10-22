@@ -60,6 +60,7 @@ class DBStorage:
                     instance.__dict__ = instance.to_dict()
                     dictionary.update({key: instance})
         else:
+            cls = cls.__name__
             all_instance = self.__session.query(all_class[cls]).all()
             for instance in all_instance:
                 key = f"{type(instance).__name__}.{instance.id}"
@@ -90,3 +91,8 @@ class DBStorage:
                                        expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
+
+    def close(self):
+        """ This method calls the remove method on the session class
+        """
+        self.__session.close()
