@@ -6,27 +6,17 @@
 from flask import Flask, render_template
 from models import storage
 from models.state import State
-
+from models.amenity import Amenity
 app = Flask(__name__)
 
 
-@app.route("/states", strict_slashes=False)
-def state_cities():
-    """ This function returns the states from html """
-    print("entered /states or /states/ function")
+@app.route("/hbnb_filters", strict_slashes=False)
+def hbnb():
+    """ This function renders a html page
+    """
     states = storage.all(State)
-    return render_template("9-states.html", state=states, id=id)
-
-
-@app.route("/states/<id>", strict_slashes=False)
-def state_city(id):
-    """ This function returns the states from html """
-    print("entered states/id function")
-    states = storage.all(State).values()
-    for state in states:
-        if state.id == id:
-            return render_template("9-states.html", state=state)
-    return render_template("9-states.html")
+    amenities = storage.all(Amenity)
+    return render_template("10-hbnb_filters.html", states=states, amenities=amenities)
 
 
 @app.teardown_appcontext

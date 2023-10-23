@@ -15,7 +15,7 @@ def state_cities():
     """ This function returns the states from html """
     print("entered /states or /states/ function")
     states = storage.all(State)
-    return render_template("9-states.html", state=states, id=id)
+    return render_template("9-states.html", state=states)
 
 
 @app.route("/states/<id>", strict_slashes=False)
