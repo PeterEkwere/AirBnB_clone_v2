@@ -18,7 +18,7 @@ class State(BaseModel, Base):
 
     @property
     def cities(self):
-        """This method Gets Cities linked to the State
+        """This method Gets Cities linked to the State if filestorage
         """
         if os.getenv('HBNB_TYPE_STORAGE') == 'db':
             from models import storage
@@ -30,6 +30,8 @@ class State(BaseModel, Base):
                     all_instance.append(city)
             return all_instance
         else:
+            city_list = []
             for city in models.storage.all(City).values():
                 if city.state_id == self.id:
-                    return city
+                    city_list.append(city)
+            return city_list
