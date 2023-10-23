@@ -60,7 +60,10 @@ class DBStorage:
                     instance.__dict__ = instance.to_dict()
                     dictionary.update({key: instance})
         else:
-            cls = cls.__name__
+            if type(cls) == str:
+                pass
+            else:
+                cls = cls.__name__
             all_instance = self.__session.query(all_class[cls]).all()
             for instance in all_instance:
                 key = f"{type(instance).__name__}.{instance.id}"
